@@ -13,7 +13,7 @@ This is a project from [The Hacking Project](https://www.thehackingproject.org) 
 ## How to play
 
 ```bash
-$ ruby app.rb
+$ ruby tictactoe.rb
 ```
 
 ## Requirements
@@ -23,8 +23,8 @@ $ ruby app.rb
 ## Roadmap
 
 - [x] version 1: functional core game
-- [ ] version 2: enable playing
-- [ ] version 3: pimp it up!
-    - [ ] add colours
-    - [ ] display a board
+- [x] version 2: enable playing
+- [x] version 3: pimp it up!
+    - [x] add colours
+    - [x] display a board
 - [ ] version 4: even prettier & more functionalities
