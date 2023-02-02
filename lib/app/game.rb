@@ -12,8 +12,12 @@ class Game
     @turn = 0
   end
 
+  def fetch_pick
+    @available_spaces.sample
+  end
+
   def run_player_turn(player)
-    pick = @available_spaces.sample
+    pick = fetch_pick
     player.plays(pick)
     @available_spaces -= [pick]
     puts "#{player.name} played #{pick}"
