@@ -42,7 +42,7 @@ class Game < Core
     if winner?.nil?
       puts "\n\nNo winner :("
     else
-      puts "#{winner?.name} is the winner! Congrats :)"
+      puts "\n\n#{winner?.name} is the winner! Congrats :)"
     end
   end
 end
