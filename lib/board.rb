@@ -5,15 +5,15 @@ class Board
   def initialize
     @grid = [
       '· ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ ·',
-      '┆         ┆         ┆         ┆',
+      '┆ A       ┆ B       ┆ C       ┆',
       '┆    a    ┆    b    ┆    c    ┆',
       '┆         ┆         ┆         ┆',
-      '· ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ ·',
-      '┆         ┆         ┆         ┆',
+      '· ╌╌╌╌╌╌╌ + ╌╌╌╌╌╌╌ + ╌╌╌╌╌╌╌ ·',
+      '┆ D       ┆ E       ┆ F       ┆',
       '┆    d    ┆    e    ┆    f    ┆',
       '┆         ┆         ┆         ┆',
-      '· ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ ·',
-      '┆         ┆         ┆         ┆',
+      '· ╌╌╌╌╌╌╌ + ╌╌╌╌╌╌╌ + ╌╌╌╌╌╌╌ ·',
+      '┆ G       ┆ H       ┆ I       ┆',
       '┆    g    ┆    h    ┆    i    ┆',
       '┆         ┆         ┆         ┆',
       '· ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ · ╌╌╌╌╌╌╌ ·'
@@ -43,16 +43,19 @@ class Board
       elsif k =~ picks1_regex
         [k, @tokens[1]]
       else
-        [k, "\e[3m#{v.upcase}\e[23m"]
+        [k, ' ']
       end
     end.to_h
   end
 
   def display_grid(current_game)
     @grid.each do |row|
-      spaces_regex = /[#{@spaces.values.join}]/
-      if row =~ spaces_regex
-        puts "#{row.gsub(spaces_regex, parse_spaces(current_game))}\n"
+      spaces_regex = @spaces.values.join
+      case row
+      when /[#{spaces_regex}]/
+        puts "#{row.gsub(/[#{spaces_regex}]/, parse_spaces(current_game))}\n"
+      when /[#{spaces_regex.upcase}]/
+        puts "#{row.gsub(/([#{spaces_regex.upcase}])/, "\e[3m" + '\1' + "\e[23m")}\n"
       else
         puts "#{row}\n"
       end
